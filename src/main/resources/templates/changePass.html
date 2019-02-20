@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Смена пароля</title>
 </head>
 <body>
+<!-- Include _menu.html -->
+<th:block th:include="/_menu"></th:block>
+
+<h1>Введите дважды новый пароль:</h1>
+
+</div>
+<div th:if="${message != null}" th:utext="${message}" style="color:red;margin:10px 0px;"></div>
+    <form action="/lk/changePass" method="POST">
+        <input type="password" name="newPass" placeholder="Новый пароль" />
+        <input type="password" name="confirmNewPass" placeholder="Подтверждение" />
+
+        <button type="submit" > Сменить</button>
+    </form>
+
+<br>
 
 </body>
+
 </html>

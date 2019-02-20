@@ -1,4 +1,4 @@
-package org.facet.working;
+package org.facet.sbsecurity.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ public class DBConnect {
     private static final String PASSWORD = "Aa123456!";
     private static Connection connection;
 
-    public Connection DBConnect() {
+    public DBConnect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         }
@@ -29,7 +29,9 @@ public class DBConnect {
         catch (SQLException e) {
             e.getErrorCode();
         }
+    }
 
+    public Connection getConnection() {
         return connection;
     }
 }
