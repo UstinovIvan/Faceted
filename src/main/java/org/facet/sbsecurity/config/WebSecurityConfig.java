@@ -52,7 +52,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // But access a page that requires role YY,
         // AccessDeniedException will be thrown.
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-
         // Config for Login Form
         http.authorizeRequests().and().formLogin()//
                 // Submit URL of login page.
@@ -63,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 // Config for Logout Page
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
 
     }
 }

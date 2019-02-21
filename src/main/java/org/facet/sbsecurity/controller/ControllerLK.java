@@ -1,23 +1,16 @@
 package org.facet.sbsecurity.controller;
 
-import org.facet.sbsecurity.dao.AppUserDAO;
-import org.facet.sbsecurity.model.AppUser;
-import org.facet.sbsecurity.service.UserDetailsServiceImpl;
 import org.facet.sbsecurity.utils.EncrytedPasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -52,7 +45,7 @@ public class ControllerLK extends JdbcDaoSupport{
         return "lk";
     }
     
-    public void setNullstudentInfo() {
+    public static void setNullstudentInfo() {
         studentInfo = null;
         System.out.println("Obnul");
     }
@@ -60,13 +53,13 @@ public class ControllerLK extends JdbcDaoSupport{
 
 
     @RequestMapping(value = "/lk/changePass", method = RequestMethod.GET)
-    public String changeP(Model model) {
+    public String changePassGet(Model model) {
 
         return "changePass";
     }
 
     @RequestMapping(value = "/lk/changePass", method = RequestMethod.POST)
-    public String changePass(@RequestParam String newPass,
+    public String changePassPost(@RequestParam String newPass,
                       @RequestParam String confirmNewPass,
                                            Model model,
                                            Principal principal) {

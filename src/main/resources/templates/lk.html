@@ -1,51 +1,298 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Личный кабинет</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Личный кабинет</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+	<style>
+
+	body {
+		background-color: #161619;
+		color: white;
+	}
+
+
+	.block{
+		background-color:#242528;
+		border-radius: 10px;
+		padding: 20px; /* Поля вокруг текста */
+		margin: auto; /* Выравниваем по центру */
+	}
+
+	.form-signin {
+		width: 100%;
+		max-width: 600px;
+		padding: 0;
+		margin:auto;
+		text-align: left;
+	}
+
+	button{
+		height: 100%;
+		width: 50px;
+		padding: 0;
+		margin: 0;
+	}
+
+	.image{
+		src:"icon-jake.png" ;
+		max-width: 200px; 
+		height: auto; 
+		border-radius: 50%;" 
+	}
+	.header{
+		background-color: RGB(110,117,124);
+		display: inline-block;
+		height: 50px;
+	}
+
+</style>
+
 </head>
 <body>
-<!-- Include _menu.html -->
-<th:block th:include="/_menu"></th:block>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+		<a class="navbar-brand" href="#"> speculo </a>
+		
+		
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+
+			<span class="navbar-toggler-icon"></span>
+
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" th:href="@{/lk}">Мой профиль</a>
+				</li>
+				<li class="nav-item ">
+					<a class="nav-link" href="#">Мои услуги</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Заказать услугу</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Расписание</a>
+				</li>
+				<li class="nav-item ">
+					<a class="nav-link" th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выход</a>
+				</li>
+
+			</ul>
+		</div>
+
+		<a class="navbar-brand ml-auto" href="#">
+			<i class="far fa-bell fa-lg" ></i>
+		</a>
+		
+	</nav>
+
+	<main role="main" class="container">
+		
+		<div class="block row mb-4">
+			
+			
+				<img src="/img/icon-jake.png" class="py-4 m-auto rounded-circle">
+			
+			<hr/>
+			<form class="form-signin">
+
+				<div class = "row">
+					<div class = "col-sm-2 col-md-2 col-3">
+						<i class="fas fa-user-graduate fa-3x"></i>
+					</div>
+					<div class="col-sm-5 col-md-8 col-6">
+						<label style="font-weight:=bold; font-size: 15px; color:RGB(110,117,124)">Фамилия Имя Отчество</label>
+						<div class = "row">
+							<div class="col-sm-8 col-md-8 col-10">
+								<span th:utext="${SURNAME}"></span>
+								<span th:utext="${SNAME}"></span>
+								<span th:utext="${PATRONYMIC}"></span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<hr/>
+
+				<div class = "row">
+					<div class = "col-sm-2 col-md-2 col-3">
+						<i class="fas fa-book-open fa-3x"></i>
+					</div>
+					<div class="col-sm-5 col-md-8 col-6">
+						<label style="font-weight:=bold; font-size: 15px; color:RGB(110,117,124)">Номер студенческого</label>
+						<div class = "row">
+							<div class="col-sm-8 col-md-8 col-10">
+								<span th:utext="${TICKET}"></span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<hr/>
+
+				<div class = "row">
+					<div class = "col-sm-2 col-md-2 col-3">
+						<i class="far fa-calendar-alt fa-3x"></i>
+					</div>
+					<div class="col-sm-5 col-md-8 col-6">
+						<label style="font-weight:=bold; font-size: 15px; color:RGB(110,117,124)">Дата рождения</label>
+						<div class = "row">
+							<div class="col-sm-8 col-md-8 col-10">
+								<span th:utext="${BIRTH_DATE}"></span>
+							</div>
+						</div>
+
+					</div>
+				</div>
 
 
-<h2>User Info Page</h2>
-<!-- <h3>Welcome : <span th:utext="${#request.userPrincipal.name}"></span></h3> -->
-<h3>Фамилия Имя Отчество</h3>
-<div  th:utext="${SURNAME}"></div>
-<h3>----------------------------------------</h3>
-<h3>Номер студенческого билета</h3>
-<div  th:utext="${TICKET}"></div>
-<h3>----------------------------------------</h3>
-<h3>Дата рождения</h3>
-<div  th:utext="${BIRTH_DATE}"></div>
-<h3>----------------------------------------</h3>
-<h3>Номер группы</h3>
-<div  th:utext="${SGROUP}"></div>
-<h3>----------------------------------------</h3>
-<h3>Уровень</h3>
-<div  th:utext="${level}"></div>
-<h3>----------------------------------------</h3>
-<h3>Бомж или мажор</h3>
-<div  th:utext="${BUDGET}"></div>
-<h3>----------------------------------------</h3>
-<h3>Номер телефона</h3>
-<div  th:utext="${TELEPHONE}"></div>
-<h3>----------------------------------------</h3>
-<h3>Общежитие</h3>
-<div  th:utext="${HOSTEL}"></div>
-<h3>----------------------------------------</h3>
-<h3>Email</h3>
-<div  th:utext="${EMAIL}"></div>
-<h3>----------------------------------------</h3>
-<h3>Rating</h3>
-<div  th:utext="${RATING}"></div>
-<h3>----------------------------------------</h3>
-<a th:href="@{/lk/changePass}">Change Password</a>
+				<hr/>
 
-<br/><br/>
+				<div class = "row">
+					<div class = "col-sm-2 col-md-2 col-3">
+						<i class="fas fa-users fa-3x"></i>
+					</div>
+					<div class="col-sm-5 col-md-8 col-6">
+						<label style="font-weight:=bold; font-size: 15px; color:RGB(110,117,124)">Номер группы</label>
+						<div class = "row">
+							<div class="col-sm-8 col-md-8 col-10">
+								<span th:utext="${SGROUP}"></span>
+							</div>
+						</div>
 
-<div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
+					</div>
+				</div>
 
+
+
+				<hr/>
+
+				<div class = "row">
+					<div class = "col-sm-2 col-md-2 col-3">
+						<i class="fas fa-university fa-3x"></i>
+					</div>
+					<div class="col-sm-5 col-md-8 col-6">
+						<label style="font-weight:=bold; font-size: 15px; color:RGB(110,117,124)">Форма обучения</label>
+						<div class = "row">
+							<div class="col-sm-8 col-md-8 col-10">
+								<span th:utext="${level}"></span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<hr/>
+
+				<div class = "row">
+					<div class = "col-sm-2 col-md-2 col-3">
+
+						<i class="fas fa-money-bill-wave fa-3x"></i>
+					</div>
+					<div class="col-sm-5 col-md-8 col-6">
+						<label style="font-weight:=bold; font-size: 15px; color:RGB(110,117,124)">Бюджет/Внебюджет</label>
+						<div class = "row">
+							<div class="col-sm-8 col-md-8 col-10">
+								<span th:utext="${BUDGET}"></span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+				<hr/>
+
+				<div class = "row">
+					<div class = "col-sm-2 col-md-2 col-3">
+						<i class="fas fa-phone-square fa-3x"></i></i>
+					</div>
+					<div class="col-sm-5 col-md-8 col-6">
+						<label style="font-weight:=bold; font-size: 15px; color:RGB(110,117,124)">Номер телефона</label>
+						<div class = "row">
+							<div class="col-sm-8 col-md-8 col-10">
+								<span th:utext="${TELEPHONE}"></span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<hr/>
+
+
+				<div class = "row">
+					<div class = "col-sm-2 col-md-2 col-3">
+						<i class="fas fa-hotel fa-3x"></i>
+
+					</div>
+					<div class="col-sm-5 col-md-8 col-6">
+						<label style="font-weight:=bold; font-size: 15px; color:RGB(110,117,124)">Общежитие</label>
+						<div class = "row">
+							<div class="col-sm-5 col-md-8 col-9">
+								<span th:if="${HOSTEL != null}" th:utext="${HOSTEL}"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<hr/>
+
+				<div class = "row">
+					<div class = "col-sm-2 col-md-2 col-3">
+						<i class="fas fa-envelope fa-3x"></i>
+					</div>
+					<div class="col-sm-5 col-md-6 col-6">
+						<label style="font-weight:=bold; font-size: 15px; color:RGB(110,117,124)">Email</label>
+						<div class = "row">
+							<div class="col-sm-8 col-md-8 col-9">
+								<span th:utext="${EMAIL}"></span>
+							</div>
+						</div>
+					</div>
+					<div class="ml-auto">
+						<button type="button" class="btn btn-dark align-middle">></button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	<footer class="page-footer font-small special-color-dark pt-4" style="color: rgb(53,58,63);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+
+          
+          <form class="form-inline">
+            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </form>
+          
+
+        </div>
+        </div>
+      </div>
+    </div> 
+    <div class="footer-copyright text-center py-3"> Made by idb-16-02
+      
+    </div>
+    
+
+  </footer>
+  <!-- Footer -->
+	</main>
+
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<!-- Bootstrap JS -->
+	<script src="js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

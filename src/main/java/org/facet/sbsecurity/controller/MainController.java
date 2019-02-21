@@ -17,7 +17,7 @@ public class MainController {
     public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");
         model.addAttribute("message", "This is welcome page!");
-        return "welcomePage";
+        return "loginPage";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -39,10 +39,10 @@ public class MainController {
 
     @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
     public String logoutSuccessfulPage(Model model) {
+        System.out.println("logout");
         model.addAttribute("title", "Logout");
-        ControllerLK controllerLK = new ControllerLK();
-        controllerLK.setNullstudentInfo();
-        return "logoutSuccessfulPage";
+        ControllerLK.setNullstudentInfo();
+        return "loginPage";
     }
 
     @RequestMapping(value = "/userInfo", method = RequestMethod.GET)

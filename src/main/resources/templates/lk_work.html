@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Личный кабинет</title>
+</head>
+<body>
+<!-- Include _menu.html -->
+<th:block th:include="/_menu"></th:block>
+
+
+<h2>User Info Page</h2>
+<!-- <h3>Welcome : <span th:utext="${#request.userPrincipal.name}"></span></h3> -->
+<h3>Фамилия Имя Отчество</h3>
+<div  th:utext="${SURNAME}"></div>
+<h3>----------------------------------------</h3>
+<h3>Номер студенческого билета</h3>
+<div  th:utext="${TICKET}"></div>
+<h3>----------------------------------------</h3>
+<h3>Дата рождения</h3>
+<div  th:utext="${BIRTH_DATE}"></div>
+<h3>----------------------------------------</h3>
+<h3>Номер группы</h3>
+<div  th:utext="${SGROUP}"></div>
+<h3>----------------------------------------</h3>
+<h3>Уровень</h3>
+<div  th:utext="${level}"></div>
+<h3>----------------------------------------</h3>
+<h3>Бомж или мажор</h3>
+<div  th:utext="${BUDGET}"></div>
+<h3>----------------------------------------</h3>
+<h3>Номер телефона</h3>
+<div  th:utext="${TELEPHONE}"></div>
+<h3>----------------------------------------</h3>
+<h3>Общежитие</h3>
+<div  th:utext="${HOSTEL}"></div>
+<h3>----------------------------------------</h3>
+<h3>Email</h3>
+<div  th:utext="${EMAIL}"></div>
+<h3>----------------------------------------</h3>
+<h3>Rating</h3>
+<div  th:utext="${RATING}"></div>
+<h3>----------------------------------------</h3>
+<a th:href="@{/lk/changePass}">Change Password</a>
+
+<br/><br/>
+
+<div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
+
+</body>
+
+</html>
