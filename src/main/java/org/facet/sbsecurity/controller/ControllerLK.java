@@ -85,4 +85,16 @@ public class ControllerLK extends JdbcDaoSupport{
         }
         return "changePass";
     }
+
+    @RequestMapping(value = "/lk/orders", method = RequestMethod.GET)
+    public String ordersPage(Model model) {
+
+        return "orders";
+    }
+
+    @RequestMapping(value = "/lk/schedule", method = RequestMethod.GET)
+    public String schedulePage(Model model) {
+
+        return "schedule";
+    }
 }

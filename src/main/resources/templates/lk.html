@@ -55,42 +55,7 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-		<a class="navbar-brand" href="#"> speculo </a>
-		
-		
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-
-			<span class="navbar-toggler-icon"></span>
-
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarCollapse">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" th:href="@{/lk}">Мой профиль</a>
-				</li>
-				<li class="nav-item ">
-					<a class="nav-link" href="#">Мои услуги</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Заказать услугу</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Расписание</a>
-				</li>
-				<li class="nav-item ">
-					<a class="nav-link" th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Выход</a>
-				</li>
-
-			</ul>
-		</div>
-
-		<a class="navbar-brand ml-auto" href="#">
-			<i class="far fa-bell fa-lg" ></i>
-		</a>
-		
-	</nav>
+<th:block th:include="/_menu2"></th:block>
 
 	<main role="main" class="container">
 		
@@ -293,6 +258,6 @@
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<!-- Bootstrap JS -->
-	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
