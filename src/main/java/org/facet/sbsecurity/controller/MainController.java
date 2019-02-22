@@ -41,7 +41,6 @@ public class MainController {
     public String logoutSuccessfulPage(Model model) {
         System.out.println("logout");
         model.addAttribute("title", "Logout");
-        ControllerLK.setNullstudentInfo();
         return "loginPage";
     }
 

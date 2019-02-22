@@ -1,8 +1,12 @@
 package org.facet.sbsecurity.controller;
 
+import org.facet.sbsecurity.model.AppUser;
 import org.facet.sbsecurity.utils.EncrytedPasswordUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -15,7 +19,7 @@ import java.util.Map;
 
 @Controller
 public class ControllerLK extends JdbcDaoSupport{
-    private static Map<String, Object> studentInfo = null;
+    static Logger logger = Logger.getLogger(ControllerLK.class);
 
     @Autowired
     public ControllerLK (DataSource dataSource) {
@@ -30,27 +34,12 @@ public class ControllerLK extends JdbcDaoSupport{
 
         String sql = "select * from students where ticket=" + principal.getName() + ";";
 
-        if (studentInfo == null) {
-            System.out.println("create");
-
-            studentInfo = this.getJdbcTemplate().queryForMap(sql);
-
-            if (!this.getConnection().isClosed()) {
-                this.getConnection().close();
-                System.out.println("Connection was closed");
-            }
-        }
-
+        Map<String, Object> studentInfo = this.getJdbcTemplate().queryForMap(sql);
         model.addAllAttributes(studentInfo);
+        studentInfo = null;
+        System.out.println(model.asMap().size());
         return "lk";
     }
-    
-    public static void setNullstudentInfo() {
-        studentInfo = null;
-        System.out.println("Obnul");
-    }
-
-
 
     @RequestMapping(value = "/lk/changePass", method = RequestMethod.GET)
     public String changePassGet(Model model) {

@@ -1,7 +1,9 @@
 package org.facet.sbsecurity.model;
 
-public class AppUser {
+import org.apache.log4j.Logger;
 
+public class AppUser {
+    static Logger logger = Logger.getLogger(AppUser.class);
     private Long userId;
     private String userName;
     private String encrytedPassword;
@@ -14,6 +16,7 @@ public class AppUser {
         this.userId = userId;
         this.userName = userName;
         this.encrytedPassword = encrytedPassword;
+        logger.info(String.format("User %s has join", userName));
     }
 
     public Long getUserId() {
