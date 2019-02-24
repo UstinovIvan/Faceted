@@ -1,47 +1,29 @@
 package org.facet.sbsecurity.controller;
 
-import org.facet.sbsecurity.model.AppUser;
-import org.facet.sbsecurity.utils.EncrytedPasswordUtils;
+import org.facet.sbsecurity.model.LoginedUsers;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
-
 import java.security.Principal;
-import java.util.Map;
 
 @Controller
-public class ControllerLK extends JdbcDaoSupport{
-    static Logger logger = Logger.getLogger(ControllerLK.class);
+public class ControllerLK {
 
-    @Autowired
-    public ControllerLK (DataSource dataSource) {
-        super();
-        setDataSource(dataSource);
-    }
-    public ControllerLK () {
 
-    }
     @RequestMapping(value = "/lk", method = RequestMethod.GET)
-    public String lCabinetMain(Model model, Principal principal) throws SQLException {
+    public String lCabinetMain(Model model, Principal principal) {
 
-        String sql = "select * from students where ticket=" + principal.getName() + ";";
+        User loginedUser = (User) ((Authentication) principal).getPrincipal();
 
-        Map<String, Object> studentInfo = this.getJdbcTemplate().queryForMap(sql);
-        model.addAllAttributes(studentInfo);
-        studentInfo = null;
-        System.out.println(model.asMap().size());
+        model.addAllAttributes(LoginedUsers.getUserInfo(loginedUser.getUsername()));
         return "lk";
     }
 
-    @RequestMapping(value = "/lk/changePass", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/lk/changePass", method = RequestMethod.GET)
     public String changePassGet(Model model) {
 
         return "changePass";
@@ -73,7 +55,7 @@ public class ControllerLK extends JdbcDaoSupport{
             model.addAttribute("message", "Пароли не совпадают");
         }
         return "changePass";
-    }
+    }*/
 
     @RequestMapping(value = "/lk/orders", method = RequestMethod.GET)
     public String ordersPage(Model model) {

@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcomePage(Model model) {
-        model.addAttribute("title", "Welcome");
-        model.addAttribute("message", "This is welcome page!");
+
         return "loginPage";
     }
 
@@ -24,8 +23,8 @@ public class MainController {
     public String adminPage(Model model, Principal principal) {
 
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
-
         String userInfo = WebUtils.toString(loginedUser);
+
         model.addAttribute("userInfo", userInfo);
 
         return "adminPage";
@@ -33,17 +32,8 @@ public class MainController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(Model model) {
-
         return "loginPage";
     }
-
-    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
-    public String logoutSuccessfulPage(Model model) {
-        System.out.println("logout");
-        model.addAttribute("title", "Logout");
-        return "loginPage";
-    }
-
     @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
     public String userInfo(Model model, Principal principal) {
 

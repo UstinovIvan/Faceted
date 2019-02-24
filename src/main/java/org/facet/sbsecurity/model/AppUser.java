@@ -2,11 +2,14 @@ package org.facet.sbsecurity.model;
 
 import org.apache.log4j.Logger;
 
+import java.util.Map;
+
 public class AppUser {
     static Logger logger = Logger.getLogger(AppUser.class);
     private Long userId;
     private String userName;
     private String encrytedPassword;
+    private Map<String, Object> userInfo;
 
     public AppUser() {
 
@@ -48,4 +51,17 @@ public class AppUser {
         return this.userName + "/" + this.encrytedPassword;
     }
 
+    public Map<String, Object> getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(Map<String, Object> userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    protected void finalize() throws Throwable
+    {
+        LoginedUsers.removeUserFromLogined(this.getUserName());
+        System.out.println("destroyed");
+    }
 }

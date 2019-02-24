@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.facet.sbsecurity.dao.AppUserDAO;
 import org.facet.sbsecurity.dao.AppRoleDAO;
+import org.facet.sbsecurity.dao.StudentInfoDAO;
 import org.facet.sbsecurity.model.AppUser;
+import org.facet.sbsecurity.model.LoginedUsers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,6 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private AppRoleDAO appRoleDAO;
 
+    @Autowired
+    private StudentInfoDAO studentInfoDAO;
+
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         AppUser appUser = this.appUserDAO.findUserAccount(userName);
@@ -32,7 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             System.out.println("User not found! " + userName);
             throw new UsernameNotFoundException("User " + userName + " was not found in the database");
         }
-
+        appUser.setUserInfo(studentInfoDAO.findStudentInfo(userName));
         System.out.println("Found User: " + appUser);
 
         // [ROLE_USER, ROLE_ADMIN,..]
@@ -49,6 +54,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         UserDetails userDetails = (UserDetails) new User(appUser.getUserName(), //
                 appUser.getEncrytedPassword(), grantList);
+
+        LoginedUsers.addUser(appUser);
 
         return userDetails;
     }

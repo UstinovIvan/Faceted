@@ -10,10 +10,6 @@ public class LoginedUsers {
     static Logger logger = Logger.getLogger(LoginedUsers.class);
     private static List<AppUser> users = new ArrayList<>();
 
-    public LoginedUsers() {
-
-    }
-
     public static void addUser(AppUser appUser) {
         users.add(appUser);
         System.out.println("Добавлен " + appUser.getUserName());

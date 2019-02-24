@@ -1,5 +1,6 @@
 package org.facet.sbsecurity.dao;
 
+import org.apache.log4j.Logger;
 import org.facet.sbsecurity.mapper.AppUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -13,7 +14,7 @@ import java.util.Map;
 @Repository
 @Transactional
 public class StudentInfoDAO extends JdbcDaoSupport {
-
+    static Logger logger = Logger.getLogger(StudentInfoDAO.class);
     @Autowired
     public StudentInfoDAO(DataSource dataSource) {
         this.setDataSource(dataSource);
@@ -27,8 +28,10 @@ public class StudentInfoDAO extends JdbcDaoSupport {
         AppUserMapper mapper = new AppUserMapper();
         try {
             Map<String, Object> studentInfo = this.getJdbcTemplate().queryForMap(sql);
+            logger.info(String.format("Request information on student with ticket #%s", userName));
             return studentInfo;
         } catch (EmptyResultDataAccessException e) {
+            logger.error(String.format("Error requesting information on student with ticket # %s", userName), e);
             return null;
         }
     }
