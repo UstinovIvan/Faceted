@@ -34,6 +34,7 @@ public class MainController {
     public String loginPage(Model model) {
         return "loginPage";
     }
+
     @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
     public String userInfo(Model model, Principal principal) {
 

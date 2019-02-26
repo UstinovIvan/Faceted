@@ -62,6 +62,7 @@ public class AppUser {
     protected void finalize() throws Throwable
     {
         LoginedUsers.removeUserFromLogined(this.getUserName());
+        logger.info(String.format("User %s has deleted from memmory", this.getUserName()));
         System.out.println("destroyed");
     }
 }

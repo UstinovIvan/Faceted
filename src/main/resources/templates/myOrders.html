@@ -61,47 +61,15 @@
 <body>
 <th:block th:include="_menu2"></th:block>
 
-<div th:if="${message != null}" th:utext="${message}" style="color:red;margin:10px 0px;"></div>
-<main role="main" class="container">
-
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter1">
-        Заказать справку о прохождении обучения в университете
+
+<div th:each="requests : ${requests}" class="container">
+    <button type="button" class="btn btn-secondary btn-lg btn-block mb-3">
+        <span th:text="${requests.Request}" />
+        <div></div>
+        <span th:text="${requests.Status}"/>
     </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle" style="color: black">Описание услуги</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="color: black">
-
-                    <span>Об услуге: Данная услуга предоставляется в качестве доказательства о получении образования в ФГБОУ ВО МГТУ СТАНКИН</span>
-                    <br/>
-                    <span>Время изготовления: 1 день</span> <br/>
-                    <span>Где забрать: 6 этаж нового корпуса</span> <br/>
-                    <span>Время работы: вт-чт, 10 00 - 16 00</span> <br/>
-                    <span>Дополнительные сведения: -</span> <br/>
-
-                </div>
-                <div class="modal-footer">
-                    <form  th:action="@{/lk/orders}" method='POST'>
-                        <input type="hidden" name="order" value="1"/>
-                        <button type="submit" class="btn btn-dark ">+</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
+</div>
 
 
     <footer class="page-footer font-small special-color-dark pt-4" style="color: rgb(53,58,63);">
