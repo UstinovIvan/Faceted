@@ -85,14 +85,16 @@
 
 </head>
 <body class="text-center">
-<div th:if="${#request.getParameter('error') == 'true'}"
-     style="color:red;margin:10px 0px;">
-  Change Password Failed!!!<br />
-  Reason :
-  <span th:utext="${message}"></span>
 
-</div>
   <div class="block mt-5 mb-3">
+
+
+    <div th:if="${#request.getParameter('error') == 'true'}"
+         style="color:red;margin:10px 0px;">
+      Authorization Failed!!!<br />
+    </div>
+
+
   <form class="form-signin" th:action="@{/j_spring_security_check}" method='POST'>
     <img class="logo mb-4" src="logo.png" alt="">
     <h1 class="h2 mb-3 font-weight-normal">Авторизация</h1>
