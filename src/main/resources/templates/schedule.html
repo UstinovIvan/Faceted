@@ -63,106 +63,20 @@
 
 	<main role="main" class="container">
 		
-		<h2 class="text-white  mb-3"> 12.03.19</h2>
+		<h2 class="text-white  mb-3" align="center"> Сегодня у вас</h2>
+		<h2 class="text-white  mb-3" align="center" th:if="${schedule.isEmpty()} == true" th:visible="true">ничего нет</h2>
 
-		<div class="card text-white mb-3" style="background-color: rgb(36,37,40);" >
-			<div class="card-header">1 пара</div>
+
+		<div th:each="schedule : ${schedule}" class="card text-white mb-3" style="background-color: rgb(36,37,40);" >
+			<div class="card-header"><span th:text="${schedule.Time}" /> пара</div>
 			<div class="card-body">
-				<h5 class="card-title">Метрология, стандартизация и сертификация</h5>
+				<h5 class="card-title"><span th:text="${schedule.Subject}" /></h5>
 				<p class="card-text">
-					<span class="schedule"> Форма занития:</span> Лекция <br/>
+					<span class="schedule"> Форма занятия: </span> Лекция <br/>
 
-					<span class="schedule"> Преподаватель:</span> Сильвестрова Е. Э. <br/>
+					<span class="schedule"> Преподаватель: </span><span th:text="${schedule.Teacher}" /><br/>
 
-					<span class="schedule"> Кабинет:</span> 409 <br/>
-
-				</p>
-			</div>
-		</div>
-
-
-		<div class="card text-white mb-3" style="background-color: rgb(36,37,40);" >
-			<div class="card-header">2 пара</div>
-			<div class="card-body">
-				<h5 class="card-title">Метрология, стандартизация и сертификация</h5>
-				<p class="card-text">
-					
-
-					<span class="schedule"> Форма занития:</span> Лекция <br/>
-
-					<span class="schedule"> Преподаватель:</span> Сильвестрова Е. Э. <br/>
-
-					<span class="schedule"> Кабинет:</span> 409 <br/>
-				</p>
-			</div>
-		</div>
-
-
-
-		<div class="card text-white  mb-3" style="background-color: rgb(36,37,40);" >
-			<div class="card-header">3 пара</div>
-			<div class="card-body">
-				<h5 class="card-title">Метрология, стандартизация и сертификация</h5>
-				<p class="card-text">
-					<span class="schedule"> Форма занития:</span> Семинар <br/>
-
-					<span class="schedule"> Преподаватель:</span> Сильвестрова Е. Э. <br/>
-
-					<span class="schedule"> Кабинет:</span> 409 <br/>
-				</p>
-			</div>
-		</div>
-
-
-
-		<div class="card text-white mb-3" style="background-color: rgb(36,37,40);">
-			<div class="card-header">4 пара</div>
-			<div class="card-body">
-				<h5 class="card-title">Функциональное и логическое программирование</h5>
-				<p class="card-text">
-					
-					<span class="schedule"> Форма занития:</span> Семинар <br/>
-
-					<span class="schedule"> Преподаватель:</span> Стоякова К. Л. <br/>
-
-					<span class="schedule"> Кабинет:</span> 0808 <br/>
-
-
-				</p>
-			</div>
-		</div>
-
-
-
-
-		<div class="card text-white  mb-3" style="background-color: rgb(36,37,40);" >
-			<div class="card-header">5 пара</div>
-			<div class="card-body">
-				<h5 class="card-title">Сегодня у вас нет этой пары</h5>
-				<p class="card-text">
-
-					<span class="schedule"> Форма занития:</span> - <br/>
-
-					<span class="schedule"> Преподаватель:</span> - <br/>
-
-					<span class="schedule"> Кабинет:</span> - <br/>
-
-
-
-				</p>
-			</div>
-		</div>
-
-		<div class="card text-white  mb-3" style="background-color: rgb(36,37,40);">
-			<div class="card-header">6 пара</div>
-			<div class="card-body">
-				<h5 class="card-title">Сегодня у вас нет этой пары</h5>
-				<p class="card-text">
-					<span class="schedule"> Форма занития:</span> - <br/>
-
-					<span class="schedule"> Преподаватель:</span> - <br/>
-
-					<span class="schedule"> Кабинет:</span> - <br/>
+					<span class="schedule"> Кабинет:</span> <span th:text="${schedule.ClassRoom}" /> <br/>
 
 				</p>
 			</div>

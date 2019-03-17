@@ -2,6 +2,7 @@ package org.facet.sbsecurity.controller;
 
 import org.facet.sbsecurity.dao.AppUserDAO;
 import org.facet.sbsecurity.dao.RequestsDAO;
+import org.facet.sbsecurity.dao.ScheduleDAO;
 import org.facet.sbsecurity.model.LoginedUsers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,9 @@ public class ControllerLK {
 
     @Autowired
     private AppUserDAO appUserDAO;
+
+    @Autowired
+    private ScheduleDAO scheduleDAO;
 
     @RequestMapping(value = "/lk", method = RequestMethod.GET)
     public String lCabinetMain(Model model, Principal principal) {
@@ -87,8 +91,10 @@ public class ControllerLK {
     }
 
     @RequestMapping(value = "/lk/schedule", method = RequestMethod.GET)
-    public String schedulePage(Model model) {
+    public String schedulePage(Model model, Principal principal) {
 
+        List<Map<String, Object>> schedule = this.scheduleDAO.getSchedule(principal.getName());
+        model.addAttribute("schedule", schedule);
         return "schedule";
     }
 

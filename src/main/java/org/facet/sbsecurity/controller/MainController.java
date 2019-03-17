@@ -49,8 +49,8 @@ public class MainController {
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
 
         String userInfo = WebUtils.toString(loginedUser);
-        model.addAttribute("userInfo", userInfo);
 
+        model.addAttribute("userInfo", userInfo);
         return "userInfoPage";
     }
 
