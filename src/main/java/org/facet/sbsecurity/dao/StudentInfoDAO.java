@@ -28,7 +28,7 @@ public class StudentInfoDAO extends JdbcDaoSupport {
             logger.info(String.format("Request information on student with ticket #%s", userName));
             return studentInfo;
         } catch (EmptyResultDataAccessException e) {
-            logger.error(String.format("Error requesting information on student with ticket # %s", userName), e);
+            logger.error(String.format("Error requesting information on student with ticket #%s", userName), e);
             return null;
         }
     }

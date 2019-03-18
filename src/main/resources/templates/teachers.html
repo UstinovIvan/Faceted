@@ -71,206 +71,40 @@
 	<main role="main" class="container">
 		
 		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter1">
-			Заказать справку о прохождении обучения в университете
+		<button th:each="teachersList, iterStat : ${teachersList}" type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal"  th:data-target="${'#' + 'exampleModalCenter' + iterStat.count}">
+			<span th:text="${teachersList.Teacher_name}" />
 		</button>
 
 		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div th:each="teachersList, iterStat : ${teachersList}" class="modal fade" th:id="${'exampleModalCenter' + iterStat.count}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle" style="color: black">Описание услуги</h5>
+						<h5 class="modal-title" id="exampleModalLongTitle" style="color: black"><span th:text="${teachersList.Teacher_name}" /></h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body" style="color: black">
-						
-						<span>Об услуге: Данная услуга предоставляется в качестве доказательства о получении образования в ФГБОУ ВО МГТУ СТАНКИН</span>
-						<br/>
-						<span>Время изготовления: 1 день</span> <br/>
-						<span>Где забрать: 6 этаж нового корпуса</span> <br/>
-						<span>Время работы: вт-чт, 10 00 - 16 00</span> <br/>
-						<span>Дополнительные сведения: -</span> <br/>
+					<div class="modal-body" style="color: black" >
+
+						<div th:each="prod : *{teacher__${iterStat.count}__}" class="card text-white mb-3" style="background-color: rgb(36,37,40);" >
+							<div class="card-header"><span th:text="${prod.Day}" /></div>
+							<div class="card-header"><span th:text="${prod.Time}" /> пара</div>
+							<div class="card-body">
+								<h5 class="card-title"><span th:text="${prod.Subject}" /></h5>
+								<p class="card-text">
+
+									<span class="schedule"> Кабинет:</span> <span th:text="${prod.Room}" /><br/>
+
+								</p>
+							</div>
+						</div>
 
 					</div>
-					<div class="modal-footer">
-						<form  th:action="@{/lk/orders}" method='POST'>
-							<input type="hidden" name="order" value="1"/>
-							<button type="submit" class="btn btn-dark ">+</button>
-						</form>
-					</div>
+
 				</div>
 			</div>
 		</div>
-
-		
-
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter2">
-			Заказать справку о прохождении обучения в университете(в пенсионный)
-		</button>
-
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle1" style="color: black">Описание услуги</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body" style="color: black">
-						<span>Об услуге: Об услуге: Данная услуга предоставляется в качетсве доказательства о получении образования в ФГБОУ ВО МГТУ СТАНКИН и имеет нескольно дополнительных полей для пенсионного фонда</span>
-						<br/>
-						<span>Время изготовления: 1 неделя</span> <br/>
-						<span>Где забрать: 6 этаж нового корпуса</span> <br/>
-						<span>Время работы: вт-чт, 10 00 - 16 0</span> <br/>
-						<span>Дополнительные сведения: -</span> <br/>
-					</div>
-					<div class="modal-footer">
-						<form  th:action="@{/lk/orders}" method='POST'>
-							<input type="hidden" name="order" value="2"/>
-							<button type="submit" class="btn btn-dark ">+</button>
-						</form>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter6">
-			Получить квитанцию на оплату общежития
-		</button>
-
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle5" style="color: black">Описание услуги</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body" style="color: black">
-						<span>Об услуге: </span>
-						<br/>
-						<span>Время изготовления: 1 день</span> <br/>
-						<span>Где забрать: бухгалтерия</span> <br/>
-						<span>Время работы: </span> <br/>
-						<span>Дополнительные сведения: здесь будут две формы ввода(номер обащги, номер комнаты)</span> <br/>
-					</div>
-					<div class="modal-footer">
-						<form  th:action="@{/lk/orders}" method='POST'>
-							<input type="hidden" name="order" value="3"/>
-							<button type="submit" class="btn btn-dark ">+</button>
-						</form>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter7">
-			Получить допуск к экзамену
-		</button>
-
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter7" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle6" style="color: black">Описание услуги</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body" style="color: black">
-						<span>Об услуге:</span>
-						<br/>
-						<span>Время изготовления:</span> <br/>
-						<span>Где забрать:</span> <br/>
-						<span>Время работы:</span> <br/>
-						<span>Дополнительные сведения:</span> <br/>
-					</div>
-					<div class="modal-footer">
-						<form  th:action="@{/lk/orders}" method='POST'>
-							<input type="hidden" name="order" value="4"/>
-							<button type="submit" class="btn btn-dark ">+</button>
-						</form>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter8">
-			Найти аудиторию
-		</button>
-
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter8" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle7" style="color: black">Описание услуги</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body" style="color: black">
-						<span>Об услуге: Здесь будет форма ввода и поле вывода данных из бд, сделаем потом</span>
-						<br/>
-						
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-dark ">+</button>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter9">
-			Написать жалобу
-		</button>
-
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter9" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle8" style="color: black">Описание услуги</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body" style="color: black">
-						<span>Об услуге: здесь будет поле ввода</span>
-						<br/>
-						
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-dark ">+</button>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-
 
 
 		<footer class="page-footer font-small special-color-dark pt-4" style="color: rgb(53,58,63);">

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +44,41 @@ public class ScheduleDAO extends JdbcDaoSupport {
         }
         catch (Exception e) {
             logger.error(String.format("Other error in get schedule. Ticket: %s", ticket), e);
+            return null;
+        }
+    }
+
+    public List<Map<String, Object>> getTeachersList() {
+        String sql = "select * from stankin_db.TEACHERS order by teacher_id asc;";
+
+        try {
+            return this.getJdbcTemplate().queryForList(sql);
+            //statement.execute("commit");
+        }
+        catch (NullPointerException e) {
+            logger.error("Error in get teachers list", e);
+            return null;
+        }
+        catch (Exception e) {
+            logger.error("Other error in get teachers list", e);
+            return null;
+        }
+    }
+
+    public List<Map<String, Object>> getTeacherSchedule(String id) {
+        String sql = "select t3.Description as Day, t1.time_id as Time, t1.classroom as Room, " +
+                "t2.subject_name as Subject from stankin_db.SCHEDULE as t1, stankin_db.SUBJECTS as t2, stankin_db.days as t3 " +
+                "where t1.subject_id = t2.subject_id and t1.day_id = t3.day_id and t1.teacher_id = " + id + " order by t1.day_id asc;";
+        try {
+            return this.getJdbcTemplate().queryForList(sql);
+            //statement.execute("commit");
+        }
+        catch (NullPointerException e) {
+            logger.error("Error in get teacher schedule", e);
+            return null;
+        }
+        catch (Exception e) {
+            logger.error("Other error in get teacher schedule", e);
             return null;
         }
     }
