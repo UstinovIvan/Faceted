@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Услуги</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+	<style>
+
+	body {
+		background-color: #161619;
+		color: white;
+	}
+
+	footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+	.block{
+		background-color:#242528;
+		border-radius: 10px;
+		padding: 20px; /* Поля вокруг текста */
+		margin: auto; /* Выравниваем по центру */
+	}
+
+	.form-signin {
+		width: 100%;
+		max-width: 600px;
+		padding: 0;
+		margin:auto;
+		text-align: left;
+	}
+
+	button{
+		height: 100%;
+		width: 50px;
+		padding: 0;
+		margin: 0;
+	}
+
+	.image{
+		src:"icon-jake.png" ;
+		max-width: 200px; 
+		height: auto; 
+		border-radius: 50%;" 
+	}
+	.header{
+		background-color: RGB(110,117,124);
+		display: inline-block;
+		height: 50px;
+	}
+
+	.schedule{
+		
+	}
+
+</style>
+
+</head>
+<body>
+<th:block th:include="_menu2"></th:block>
+
+<div th:if="${message != null}" th:utext="${message}" style="color:red;margin:10px 0px;"></div>
+	<main role="main" class="container">
+		
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter1">
+			Заказать справку о прохождении обучения в университете
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle" style="color: black">Описание услуги</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="color: black">
+						
+						<span>Об услуге: Данная услуга предоставляется в качестве доказательства о получении образования в ФГБОУ ВО МГТУ СТАНКИН</span>
+						<br/>
+						<span>Время изготовления: 1 день</span> <br/>
+						<span>Где забрать: 6 этаж нового корпуса</span> <br/>
+						<span>Время работы: вт-чт, 10 00 - 16 00</span> <br/>
+						<span>Дополнительные сведения: -</span> <br/>
+
+					</div>
+					<div class="modal-footer">
+						<form  th:action="@{/lk/orders}" method='POST'>
+							<input type="hidden" name="order" value="1"/>
+							<button type="submit" class="btn btn-dark ">+</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter2">
+			Заказать справку о прохождении обучения в университете(в пенсионный)
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle1" style="color: black">Описание услуги</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="color: black">
+						<span>Об услуге: Об услуге: Данная услуга предоставляется в качетсве доказательства о получении образования в ФГБОУ ВО МГТУ СТАНКИН и имеет нескольно дополнительных полей для пенсионного фонда</span>
+						<br/>
+						<span>Время изготовления: 1 неделя</span> <br/>
+						<span>Где забрать: 6 этаж нового корпуса</span> <br/>
+						<span>Время работы: вт-чт, 10 00 - 16 0</span> <br/>
+						<span>Дополнительные сведения: -</span> <br/>
+					</div>
+					<div class="modal-footer">
+						<form  th:action="@{/lk/orders}" method='POST'>
+							<input type="hidden" name="order" value="2"/>
+							<button type="submit" class="btn btn-dark ">+</button>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter6">
+			Получить квитанцию на оплату общежития
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle5" style="color: black">Описание услуги</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="color: black">
+						<span>Об услуге: </span>
+						<br/>
+						<span>Время изготовления: 1 день</span> <br/>
+						<span>Где забрать: бухгалтерия</span> <br/>
+						<span>Время работы: </span> <br/>
+						<span>Дополнительные сведения: здесь будут две формы ввода(номер обащги, номер комнаты)</span> <br/>
+					</div>
+					<div class="modal-footer">
+						<form  th:action="@{/lk/orders}" method='POST'>
+							<input type="hidden" name="order" value="3"/>
+							<button type="submit" class="btn btn-dark ">+</button>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter7">
+			Получить допуск к экзамену
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter7" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle6" style="color: black">Описание услуги</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="color: black">
+						<span>Об услуге:</span>
+						<br/>
+						<span>Время изготовления:</span> <br/>
+						<span>Где забрать:</span> <br/>
+						<span>Время работы:</span> <br/>
+						<span>Дополнительные сведения:</span> <br/>
+					</div>
+					<div class="modal-footer">
+						<form  th:action="@{/lk/orders}" method='POST'>
+							<input type="hidden" name="order" value="4"/>
+							<button type="submit" class="btn btn-dark ">+</button>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter8">
+			Найти аудиторию
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter8" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle7" style="color: black">Описание услуги</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="color: black">
+						<span>Об услуге: Здесь будет форма ввода и поле вывода данных из бд, сделаем потом</span>
+						<br/>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-dark ">+</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-secondary btn-lg btn-block mb-3" data-toggle="modal" data-target="#exampleModalCenter9">
+			Написать жалобу
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter9" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle8" style="color: black">Описание услуги</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="color: black">
+						<span>Об услуге: здесь будет поле ввода</span>
+						<br/>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-dark ">+</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<footer class="page-footer font-small special-color-dark pt-4" style="color: rgb(53,58,63);">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 mb-4">
+
+
+						<form class="form-inline">
+							<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
+							<i class="fas fa-search" aria-hidden="true"></i>
+						</form>
+
+
+					</div>
+				</div>
+			</div>
+		</div> 
+		<div class="footer-copyright text-center py-3"> Made by Ann & Ivan (and Oleg… to a lesser degree)
+
+		</div>
+
+
+	</footer>
+	<!-- Footer -->
+</main>
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
