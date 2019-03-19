@@ -2,11 +2,8 @@ package org.facet;
 
 import java.io.BufferedWriter;
 import org.facet.sbsecurity.utils.EncrytedPasswordUtils;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import java.io.FileWriter;
-import java.security.Principal;
-import java.util.Map;
 
 
 public class CreateQuery {

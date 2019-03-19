@@ -1,6 +1,5 @@
 package org.facet.sbsecurity.utils;
 
-import org.facet.sbsecurity.service.UserDetailsServiceImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 //import java.io.*;
